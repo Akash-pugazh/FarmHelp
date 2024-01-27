@@ -1,0 +1,13 @@
+{
+  "semi": false,
+  "trailingComma": "es5",
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "singleAttributePerLine": true,
+  "embeddedLanguageFormatting": "auto",
+  "endOfLine": "lf",
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed"
+}
