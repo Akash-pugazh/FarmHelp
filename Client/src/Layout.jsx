@@ -1,36 +1,47 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Outlet, useNavigate } from 'react-router-dom'
+import Header from './component/Header'
+import Footer from './component/Footer'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import Login from './component/Login'
-import Logout from './component/Logout'
-import useAutoLoginAuth from './hooks/useAutoLoginAuth'
+import { toast, Bounce } from 'react-toastify'
 
 const Layout = () => {
-  const { data } = useAutoLoginAuth()
-  console.log(data)
-
-  const user = useSelector(state => state.user.value)
-  const navigate = useNavigate()
+  const navigateTo = useNavigate()
+  const data = JSON.parse(localStorage.getItem('data'))
   useEffect(() => {
-    if (!user) {
-      navigate('/')
+    if (
+      localStorage.getItem('data') &&
+      !JSON.parse(localStorage.getItem('data'))?.isConfiguredDetails
+    ) {
+      toast('Redirecting in 5 seconds!', {
+        position: 'top-right',
+        autoClose: 3500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+        transition: Bounce,
+      })
+      setTimeout(() => {
+        if (!data.isConfiguredDetails) navigateTo('/register')
+      }, 5000)
     }
   }, [])
+
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      {!user ? (
-        <Login />
-      ) : (
-        <div>
-          <div>
-            {user?.name}
-            <img src={user?.picture} alt={`${user?.picture}`} />
-          </div>
-          <Logout />
-        </div>
-      )}
-    </div>
+    <main className="w-screen h-screen">
+      <div className="w-full h-[10.3%]">
+        <Header data={data} />
+      </div>
+      <div className="w-full h-[83.5%]">
+        <Outlet />
+      </div>
+      <div className="w-full h-[5%]">
+        <Footer />
+      </div>
+    </main>
   )
 }
 

@@ -1,17 +1,25 @@
 import axios from 'axios'
 import { useMutation } from '@tanstack/react-query'
-import { useDispatch } from 'react-redux'
-import { setUser } from '../store/features/userSlice'
 
-const useAuth = () => {
-  const dispatch = useDispatch()
+const useAuth = naviagateTo => {
   const postAuthenticateUser = idToken =>
     axios
       .post(`${import.meta.env.VITE_BASEURL}/auth`, { idToken })
       .then(res => {
-        dispatch(setUser(res.data.data))
-        localStorage.setItem('idToken', idToken)
-        return res.data.data
+        localStorage.setItem('data', JSON.stringify(res.data.data))
+        if (res.data.message.toLowerCase() === 'user created') {
+          console.log('Here1')
+          naviagateTo('/register')
+        } else if (
+          res.data.message.toLowerCase() === 'user found' &&
+          !res.data.data.isConfiguredDetails
+        ) {
+          console.log('Here2')
+          naviagateTo('/register')
+        } else {
+          naviagateTo('/')
+        }
+        return res.data
       })
       .catch(err => console.error(err))
 

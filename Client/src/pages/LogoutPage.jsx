@@ -1,15 +1,15 @@
 import { GoogleLogout } from 'react-google-login'
-import { useDispatch } from 'react-redux'
-import { setUser } from '../store/features/userSlice'
+import { useNavigate } from 'react-router-dom'
 
-const Logout = () => {
-  const dispatch = useDispatch()
+const LogoutPage = () => {
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+  const navigate = useNavigate()
   const logout = () => {
-    dispatch(setUser(null))
+    localStorage.clear()
+    navigate('/')
   }
   return (
-    <div>
+    <div className="w-full h-full flex justify-center items-center">
       <GoogleLogout
         clientId={clientId}
         buttonText="Logout"
@@ -18,4 +18,4 @@ const Logout = () => {
   )
 }
 
-export default Logout
+export default LogoutPage
