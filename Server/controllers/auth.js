@@ -18,13 +18,14 @@ const authenticateUser = asyncWrapper(async (req, res) => {
     if (!email_verified)
       return sendResponse(res, StatusCodes.BAD_REQUEST, 'Email Not Verified')
     const fetchUserFromDatabase = await User.findOne({ email })
-    if (fetchUserFromDatabase)
+    if (fetchUserFromDatabase) {
       return sendResponse(
         res,
         StatusCodes.OK,
         'User Found',
         fetchUserFromDatabase
       )
+    }
     const password = email + process.env.GOOGLE_CLIENT_ID
     try {
       const newUser = await User.create({

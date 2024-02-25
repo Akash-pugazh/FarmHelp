@@ -9,6 +9,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const rateLimiter = require('express-rate-limit')
 const authRoutes = require('./routes/auth')
+const userRoutes = require('./routes/user')
 app.use(express.static('./public'))
 app.set('trust proxy', 1)
 app.use(
@@ -25,7 +26,8 @@ app.use(express.json())
 app.get('/api/v1', (req, res) => {
   res.send('Farm Help App')
 })
-app.use('/api/v1', authRoutes)
+app.use('/api/v1/auth', authRoutes)
+app.use('/api/v1/user', userRoutes)
 
 //  Handlers and Starter Code here
 app.use(notFound)
