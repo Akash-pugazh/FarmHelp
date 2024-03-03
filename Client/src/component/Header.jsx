@@ -3,7 +3,6 @@ import { FaUser } from 'react-icons/fa'
 import '../styles/micro5.css'
 import Tooltip from '@mui/material/Tooltip'
 const Header = ({ data }) => {
-  console.log(data)
   const activeClass = {
     color: 'lightGreen',
     textDecoration: 'underline 2px',
@@ -25,14 +24,26 @@ const Header = ({ data }) => {
                   <NavLink
                     style={({ isActive }) => (isActive ? activeClass : null)}
                     className="text-white px-2 py-1 font-semibold  rounded-md hover:underline hover:underline-offset-4"
-                    to="sellerdashboard">
+                    to="/seller/home">
+                    Home
+                  </NavLink>
+                  <NavLink
+                    style={({ isActive }) => (isActive ? activeClass : null)}
+                    className="text-white px-2 py-1 font-semibold  rounded-md hover:underline hover:underline-offset-4"
+                    to="/seller/dashboard">
                     Dashboard
                   </NavLink>
                   <NavLink
                     style={({ isActive }) => (isActive ? activeClass : null)}
                     className="text-white px-2 py-1 font-semibold  rounded-md hover:underline hover:underline-offset-4"
-                    to="sellerperformance">
+                    to="/seller/performance">
                     Performance
+                  </NavLink>
+                  <NavLink
+                    style={({ isActive }) => (isActive ? activeClass : null)}
+                    className="text-white px-2 py-1 font-semibold  rounded-md hover:underline hover:underline-offset-4"
+                    to="/seller/account">
+                    Account
                   </NavLink>
                 </>
               )}
@@ -41,13 +52,19 @@ const Header = ({ data }) => {
                   <NavLink
                     style={({ isActive }) => (isActive ? activeClass : null)}
                     className=" text-white px-2 py-1 font-semibold  rounded-md hover:underline hover:underline-offset-4 "
-                    to="userproducts">
-                    Products
+                    to="/user/home">
+                    Home
                   </NavLink>
                   <NavLink
                     style={({ isActive }) => (isActive ? activeClass : null)}
                     className=" text-white px-2 py-1 font-semibold  rounded-md hover:underline hover:underline-offset-4 "
-                    to="usercart">
+                    to="/user/shops">
+                    Shops
+                  </NavLink>
+                  <NavLink
+                    style={({ isActive }) => (isActive ? activeClass : null)}
+                    className=" text-white px-2 py-1 font-semibold  rounded-md hover:underline hover:underline-offset-4 "
+                    to="/user/cart">
                     Cart
                   </NavLink>
                 </>

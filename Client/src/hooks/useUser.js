@@ -8,7 +8,7 @@ const useUser = () => {
         email: JSON.parse(localStorage.getItem('data'))?.email,
       })
       .then(res => {
-        localStorage.setItem('data', JSON.stringify(res.data.data))
+        // localStorage.setItem('data', JSON.stringify(res.data.data))
         return res.data.data
       })
       .catch(err => console.error(err))
@@ -16,7 +16,6 @@ const useUser = () => {
   return useQuery({
     queryKey: ['User'],
     queryFn: getUser,
-    refetchOnMount: true,
   })
 }
 

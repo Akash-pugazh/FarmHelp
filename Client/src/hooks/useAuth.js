@@ -6,6 +6,7 @@ const useAuth = naviagateTo => {
     axios
       .post(`${import.meta.env.VITE_BASEURL}/auth`, { idToken })
       .then(res => {
+        localStorage.setItem('token', res.data.token)
         localStorage.setItem('data', JSON.stringify(res.data.data))
         if (res.data.message.toLowerCase() === 'user created') {
           console.log('Here1')

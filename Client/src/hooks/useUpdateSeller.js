@@ -11,7 +11,6 @@ const useUpdateSeller = navigateTo => {
         { sellerDetails: data, isConfiguredDetails: true }
       )
       .then(res => {
-        localStorage.clear()
         localStorage.setItem('data', JSON.stringify(res.data.data))
         navigateTo('/')
       })

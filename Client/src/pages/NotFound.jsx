@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 const NotFound = () => {
   return (
-    <section className=" w-full h-full flex flex-col relative items-center justify-center">
+    <section className=" w-full h-full flex flex-col relative py-4 items-center justify-center">
       <img
         src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"
         alt="Cave Man Gif"

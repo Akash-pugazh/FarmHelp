@@ -28,7 +28,7 @@ const useUpdateUser = navigateTo => {
             .then(res => {
               if (res.status === 200) {
                 localStorage.setItem('data', JSON.stringify(res.data.data))
-                navigateTo('/')
+                navigateTo('/user/home')
               }
             })
         }
