@@ -19,11 +19,13 @@ const authenticateUser = asyncWrapper(async (req, res) => {
       return sendResponse(res, StatusCodes.BAD_REQUEST, 'Email Not Verified')
     const fetchUserFromDatabase = await User.findOne({ email })
     if (fetchUserFromDatabase) {
+      const token = await fetchUserFromDatabase.createJWT()
       return sendResponse(
         res,
         StatusCodes.OK,
         'User Found',
-        fetchUserFromDatabase
+        fetchUserFromDatabase,
+        token
       )
     }
     const password = email + process.env.GOOGLE_CLIENT_ID
@@ -35,7 +37,15 @@ const authenticateUser = asyncWrapper(async (req, res) => {
         picture,
         email_verified,
       })
-      return sendResponse(res, StatusCodes.CREATED, 'User Created', newUser)
+      const token = await newUser.createJWT()
+      console.log(newUser, token)
+      return sendResponse(
+        res,
+        StatusCodes.CREATED,
+        'User Created',
+        newUser,
+        token
+      )
     } catch (err) {
       return sendResponse(res, StatusCodes.BAD_REQUEST, 'MongoDb Error', err)
     }

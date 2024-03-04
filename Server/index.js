@@ -10,6 +10,11 @@ const helmet = require('helmet')
 const rateLimiter = require('express-rate-limit')
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
+const productRoutes = require('./routes/product')
+const orderRoutes = require('./routes/order')
+const shopRoutes = require('./routes/shop')
+const tokenCheck = require('./middleware/tokenCheck')
+
 app.use(express.static('./public'))
 app.set('trust proxy', 1)
 app.use(
@@ -28,6 +33,9 @@ app.get('/api/v1', (req, res) => {
 })
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/user', userRoutes)
+app.use('/api/v1/shop', tokenCheck, shopRoutes)
+app.use('/api/v1/product', tokenCheck, productRoutes)
+app.use('/api/v1/order', tokenCheck, orderRoutes)
 
 //  Handlers and Starter Code here
 app.use(notFound)

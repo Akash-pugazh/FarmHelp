@@ -20,9 +20,7 @@ const errorHandler = (err, req, res, next) => {
   if (err.code && err.code === 11000) {
     customError.message = `Duplicate value entered for ${Object.keys(
       err.keyValue
-    )} field, Someone already exists with this ${Object.keys(
-      err.keyValue
-    )}. Please choose another value`
+    )} field, Please choose another value`
     customError.statusCode = StatusCodes.BAD_REQUEST
   }
   if (err.name === 'ValidationError') {
