@@ -2,19 +2,19 @@ import TextField from '@mui/material/TextField'
 import Switch from '@mui/material/Switch'
 import Button from '@mui/material/Button'
 import { useForm } from 'react-hook-form'
-import useUpdateSeller from '../hooks/useUpdateSeller'
 import { useNavigate } from 'react-router-dom'
+import useAddShop from '../hooks/useAddShop'
 
 const SellerFormPage = () => {
   const navigate = useNavigate()
-  const updateSeller = useUpdateSeller(navigate)
+  const addShop = useAddShop(navigate)
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
   const onSubmit = data => {
-    updateSeller.mutate(data)
+    addShop.mutate(data)
   }
 
   return (

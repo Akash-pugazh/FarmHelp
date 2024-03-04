@@ -11,6 +11,7 @@ const useAddProduct = (resetFn, closeFn) => {
         {
           productId: data.productId,
           name: data.productName,
+          type: data.type,
           price: +data.price,
           totalStock: +data.stock,
         },

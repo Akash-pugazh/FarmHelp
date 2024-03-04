@@ -235,6 +235,7 @@ function ProductForm({ type, openState, closeFn, editItem }) {
     defaultValues: {
       productId: editItem?.productId || '',
       productName: editItem?.name || '',
+      type: editItem?.type || '',
       price: editItem?.price || '',
       stock: editItem?.totalStock || '',
     },
@@ -286,6 +287,24 @@ function ProductForm({ type, openState, closeFn, editItem }) {
                   required: 'Product Name is required',
                 })}
               />
+              <Autocomplete
+                disablePortal
+                id="product Type"
+                options={['fruit', 'vegetable', 'cereal', 'others']}
+                fullWidth
+                defaultChecked={editItem?.type}
+                defaultValue={editItem?.type}
+                renderInput={params => (
+                  <TextField
+                    {...params}
+                    label="Product Type"
+                    {...register('type', {
+                      required: 'Product Type is required',
+                    })}
+                  />
+                )}
+              />
+
               <TextField
                 id="outlined-controlled"
                 label="Price"

@@ -38,7 +38,7 @@ const Layout = () => {
       <div className="w-full h-[83.5%]">
         <Outlet />
       </div>
-      <div className="w-full h-[5%]">
+      <div className="w-full h-[5%] fixed bottom-0">
         <Footer />
       </div>
     </main>

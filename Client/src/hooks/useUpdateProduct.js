@@ -11,6 +11,7 @@ const useUpdateProduct = (resetFn, closeFn, prodId) => {
         {
           productId: data.productId,
           name: data.productName,
+          type: data.type,
           price: +data.price,
           totalStock: +data.stock,
         },
